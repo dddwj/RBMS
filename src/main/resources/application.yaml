@@ -1,0 +1,50 @@
+
+spring:
+  thymeleaf:
+    cache: false
+  mvc:
+    # 数据源基本配置
+    date-format: yyyy-MM-dd
+    # 配置静态css/img/js文件的访问路径。
+    # 当访问static/img/image.jpg时会去classpath:/META-INF/resources/", "classpath:/resources/", "classpath:/static/", "classpath:/public/下查找文件
+    static-path-pattern: /static/**
+  messages:
+    basename: i18n.login
+  datasource:
+    url: jdbc:mysql://101.132.154.2:3306/RBMS?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8&useSSL=false
+    username: utms
+    password: utms
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    initialization-mode: always
+    type: com.alibaba.druid.pool.DruidDataSource
+    #   数据源其他配置
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    #   配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+    filters: stat,wall,log4j
+    maxPoolPreparedStatementPerConnectionSize: 20
+    useGlobalDataSourceStat: true
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+file:
+#  upload-folder: D:/programming/ideaworkplace/UTMS/src/main/resources/static/userfiles/
+  upload-folder: /Users/dddwj/IdeaProjects/RBMS/src/main/resources/static/
+#  upload-folder: /root/utms/static/  # Linux服务器上路径
+
+mybatis:
+  configuration:
+    #配置项：开启下划线到驼峰的自动转换. 作用：将数据库字段根据驼峰规则自动注入到对象属性。
+    map-underscore-to-camel-case: true
+
+logging:
+  level.com.ecust.utms: trace
+
+
