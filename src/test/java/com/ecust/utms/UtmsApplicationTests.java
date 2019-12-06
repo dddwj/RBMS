@@ -24,44 +24,25 @@ public class UtmsApplicationTests {
     QuestionMapper questionMapper;
     @Autowired
     StudentMapper studentMapper;
+    @Autowired
+    CourseMapper courseMapper;
 
     @Test
     public void contextLoads() {
-        //测试AdministratorMapper
-//        List<Administrator> list = administratorMapper.getAllAd();
-//        for (Administrator ad:list
-//        ) {
-//            System.out.println(ad.toString());
-//        }
-        //测试TeacherMapper
-//        Teacher tea = teacherMapper.getTea("111");
-//        tea.setName("开心");
-//        teacherMapper.updateTea(tea);
-//        System.out.println(teacherMapper.getTea("111").toString());
-        //测试ThesisMapper
-//        List<ThesisPageData> list1 = thesisMapper.getAllTPD("510100003");
-//        for(ThesisPageData t:list1){
-//            System.out.println(t.toString());
-//        }
-//        //测试QuestionMapper
-//        List<AnswerIntroData> list2 = questionMapper.getMyAnswerByTID("510100003");
-//        for(AnswerIntroData a:list2){
-//            System.out.println(a.toString());
-//        }
-        StudentPersonalPageData sppd = studentMapper.getSPPD("110161870");
-        System.out.println(sppd.toString());
-    }
+        List<CourseWithTeacher> CWTs = courseMapper.getCWTByName("英语");
+        for(CourseWithTeacher cwt:CWTs)
+            System.out.println(cwt.toString());
 
-//    Logger logger = LoggerFactory.getLogger(getClass());
-//
-//    @Test
-//    public void contextLoads() {
-////        System.out.println();
-//        logger.trace("这是trace日志...");
-//        logger.debug("这是debug日志...");
-//        logger.info("这是info日志...");
-//        logger.warn("这是warn日志...");
-//        logger.error("这是error日志...");
-//    }
+        CourseWithTeacher cwtid = courseMapper.getCWTByCID(2);
+        System.out.println(cwtid.toString());
+
+        List<CourseWithTeacher> CWT1s = courseMapper.getStudentCWT("10161870");
+        for(CourseWithTeacher cwt:CWT1s)
+            System.out.println(cwt.toString());
+
+        List<CourseWithTeacher> CWT2s = courseMapper.getTeacherCWT("111");
+        for(CourseWithTeacher cwt:CWT2s)
+            System.out.println(cwt.toString());
+    }
 
 }

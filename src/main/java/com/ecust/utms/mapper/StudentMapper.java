@@ -14,10 +14,10 @@ import java.util.List;
 @Mapper
 public interface StudentMapper {
 
-
-
+    // 搜索学生信息（1、验证密码，2、sesson传过去显示学生信息）
     @Select("select * from student where SID=#{SID}")
     Student getStu(String SID);
+
 
     @Select("select a.`Name` as `Name`, a.SID as `SID`, a.Gender as `Gender`, a.Tel as `Tel`, a.Major as `Major`,a.`Email` as `Email`, a.Passwd as `Passwd`, d.`DeptID` as `DeptID`, s.`Name` as `SubjName`,\n" +
             "            t.`Name` as `Instructor`, h.`Name` as ThesisName, r.Grade as `EGrade`\n" +
