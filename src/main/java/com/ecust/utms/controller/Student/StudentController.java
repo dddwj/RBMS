@@ -65,6 +65,7 @@ public class StudentController {
         return "Student/message";
     }
 
+
     @GetMapping("/messageInfo")
     public String toMessageInfoPage(@RequestParam(value = "AID") String AID, Model model, HttpSession session){
         Announcement announcement = announcementMapper.getAn(Integer.valueOf(AID));
@@ -117,23 +118,23 @@ public class StudentController {
         return "Student/topic";
     }
 
-    @GetMapping("/person")
-    public String showPersonPage(Map<String,Object> map, HttpSession session, HttpServletRequest request,Model model){
-        Student student = (Student)session.getAttribute("loginuser");
-        String sid = student.getSID();
-        logger.trace("--->Student: " + sid);
-        map.put("loginuser", student);
-
-        // 查询个人信息 + 课题信息
-        StudentPersonalPageData person = studentMapper.getSPPD(sid);
-        if (person==null){
-            person = new StudentPersonalPageData(student.getSID(), student.getName(), student.getGender(), student.getMajor(),
-                    student.getDeptID(), student.getPasswd(), student.getTel(), student.getEmail(),
-                    "N/A", "N/A","N/A","N/A");
-        }
-        map.put("person", person);
-        return "Student/person";
-    }
+//    @GetMapping("/person")
+//    public String showPersonPage(Map<String,Object> map, HttpSession session, HttpServletRequest request,Model model){
+//        Student student = (Student)session.getAttribute("loginuser");
+//        String sid = student.getSID();
+//        logger.trace("--->Student: " + sid);
+//        map.put("loginuser", student);
+//
+//        // 查询个人信息 + 课题信息
+//        StudentPersonalPageData person = studentMapper.getSPPD(sid);
+//        if (person==null){
+//            person = new StudentPersonalPageData(student.getSID(), student.getName(), student.getGender(), student.getMajor(),
+//                    student.getDeptID(), student.getPasswd(), student.getTel(), student.getEmail(),
+//                    "N/A", "N/A","N/A","N/A");
+//        }
+//        map.put("person", person);
+//        return "Student/person";
+//    }
 
     @GetMapping("/question")
     public String showQuestionPage(Map<String,Object> map, HttpSession session, HttpServletRequest request){
@@ -211,23 +212,23 @@ public class StudentController {
         return "Student/dissertation";
     }
 
-    @GetMapping("/StudentEditInfo")
-    public String showStudentEditInfoPage(Map<String,Object> map, HttpSession session, HttpServletRequest request){
-        Student student = (Student)session.getAttribute("loginuser");
-        String sid = student.getSID();
-        logger.trace("--->Student: " + sid);
-        map.put("loginuser", student);
-
-        // 查询个人信息 + 课题信息
-        StudentPersonalPageData person = studentMapper.getStudentPersonalPageData(sid);
-        if (person==null){
-            person = new StudentPersonalPageData(student.getSID(), student.getName(), student.getGender(), student.getMajor(),
-                    student.getDeptID(), student.getPasswd(), student.getTel(), student.getEmail(),
-                    "N/A", "N/A","N/A","N/A");
-        }
-        map.put("person", person);
-        return "Student/StudentEditInfo";
-    }
+//    @GetMapping("/StudentEditInfo")
+//    public String showStudentEditInfoPage(Map<String,Object> map, HttpSession session, HttpServletRequest request){
+//        Student student = (Student)session.getAttribute("loginuser");
+//        String sid = student.getSID();
+//        logger.trace("--->Student: " + sid);
+//        map.put("loginuser", student);
+//
+//        // 查询个人信息 + 课题信息
+//        StudentPersonalPageData person = studentMapper.getStudentPersonalPageData(sid);
+//        if (person==null){
+//            person = new StudentPersonalPageData(student.getSID(), student.getName(), student.getGender(), student.getMajor(),
+//                    student.getDeptID(), student.getPasswd(), student.getTel(), student.getEmail(),
+//                    "N/A", "N/A","N/A","N/A");
+//        }
+//        map.put("person", person);
+//        return "Student/StudentEditInfo";
+//    }
 
     @ResponseBody
     @PostMapping(value = "/chooseSub", produces = "application/json;charset=UTF-8")
