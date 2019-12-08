@@ -32,7 +32,7 @@ public class MessageController {
     public String showMessagePage(Map<String,Object> map, HttpSession session, HttpServletRequest request){
         List<Announcement> announcements = announcementMapper.getAllAn();
         for (Announcement announcement : announcements){
-            List<Attachment> attachs = attachmentMapper.getAtByAID(announcement.getAID());
+            List<Attachment> attachs = attachmentMapper.getAtByCID(announcement.getAID());
             announcement.setAttachments(attachs);
         }
         map.put("anns",announcements);
@@ -42,7 +42,7 @@ public class MessageController {
     @GetMapping("/messageInfo")
     public String toMessageInfoPage(@RequestParam(value = "AID") String AID, Model model, HttpSession session){
         Announcement announcement = announcementMapper.getAn(Integer.valueOf(AID));
-        List<Attachment> attachs = attachmentMapper.getAtByAID(announcement.getAID());
+        List<Attachment> attachs = attachmentMapper.getAtByCID(announcement.getAID());
         announcement.setAttachments(attachs);
         model.addAttribute("announcement", announcement);
         return "Teacher/messageInfo";

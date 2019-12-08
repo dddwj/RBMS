@@ -15,7 +15,7 @@ import java.util.List;
 public class UtmsApplicationTests {
 
     @Autowired
-    AdministratorMapper administratorMapper;
+    AttachmentMapper attachmentMapper;
     @Autowired
     TeacherMapper teacherMapper;
     @Autowired
@@ -26,23 +26,32 @@ public class UtmsApplicationTests {
     StudentMapper studentMapper;
     @Autowired
     CourseMapper courseMapper;
+    @Autowired
+    BookMapper bookMapper;
 
     @Test
     public void contextLoads() {
-        List<CourseWithTeacher> CWTs = courseMapper.getCWTByName("英语");
-        for(CourseWithTeacher cwt:CWTs)
-            System.out.println(cwt.toString());
+//        List<CourseWithTeacher> CWTs = courseMapper.getCWTByName("英语");
+//        for(CourseWithTeacher cwt:CWTs)
+//            System.out.println(cwt.toString());
+//
+//        CourseWithTeacher cwtid = courseMapper.getCWTByCID(2);
+//        System.out.println(cwtid.toString());
+//
+//        List<CourseWithTeacher> CWT1s = courseMapper.getStudentCWT("10161870");
+//        for(CourseWithTeacher cwt:CWT1s)
+//            System.out.println(cwt.toString());
+//e
+//        List<CourseWithTeacher> CWT2s = courseMapper.getTeacherCWT("111");
+//        for(CourseWithTeacher cwt:CWT2s)
+//            System.out.println(cwt.toString());
 
-        CourseWithTeacher cwtid = courseMapper.getCWTByCID(2);
-        System.out.println(cwtid.toString());
+        Book book = bookMapper.getBookByCID(1);
+        System.out.println(book.toString());
 
-        List<CourseWithTeacher> CWT1s = courseMapper.getStudentCWT("10161870");
-        for(CourseWithTeacher cwt:CWT1s)
-            System.out.println(cwt.toString());
-
-        List<CourseWithTeacher> CWT2s = courseMapper.getTeacherCWT("111");
-        for(CourseWithTeacher cwt:CWT2s)
-            System.out.println(cwt.toString());
+        List<Attachment> as = attachmentMapper.getAtByCID(1);
+        for(Attachment a:as)
+            System.out.println(a.toString());
     }
 
 }

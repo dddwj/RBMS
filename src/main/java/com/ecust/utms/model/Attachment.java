@@ -4,7 +4,7 @@ public class Attachment {
 
     private Integer ATID;//附件ID
     private String ATPath;//附件路径
-    private Integer AID;//公告ID
+    private Integer CID;//课程ID
     private String ATName; //附件名称
 
     public String getATPath() {
@@ -16,11 +16,11 @@ public class Attachment {
     }
 
     public Integer getAID() {
-        return AID;
+        return CID;
     }
 
     public void setAID(Integer AID) {
-        this.AID = AID;
+        this.CID = AID;
     }
 
     public Integer getATID() {
@@ -37,5 +37,15 @@ public class Attachment {
 
     public void setATName(String ATName) {
         this.ATName = ATName;
+    }
+
+    @Override
+    public String toString() {
+        return "Attachment{" +
+                "ATID=" + ATID +
+                ", ATPath='" + ATPath + '\'' +
+                ", CID=" + CID +
+                ", ATName='" + ATName + '\'' +
+                '}';
     }
 }

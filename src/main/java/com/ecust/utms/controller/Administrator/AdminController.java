@@ -78,7 +78,7 @@ public class AdminController {
     public String toMessagePage(Model model, HttpSession session){
         List<Announcement> all = announcementMapper.getAllAn();
         for (Announcement announcement : all){
-            List<Attachment> attachs = attachmentMapper.getAtByAID(announcement.getAID());
+            List<Attachment> attachs = attachmentMapper.getAtByCID(announcement.getAID());
             announcement.setAttachments(attachs);
         }
         model.addAttribute("anns",all);
@@ -88,7 +88,7 @@ public class AdminController {
     @GetMapping("/admin/messageInfo")
     public String toMessageInfoPage(@RequestParam(value = "AID") String AID, Model model, HttpSession session){
         Announcement announcement = announcementMapper.getAn(Integer.valueOf(AID));
-        List<Attachment> attachs = attachmentMapper.getAtByAID(announcement.getAID());
+        List<Attachment> attachs = attachmentMapper.getAtByCID(announcement.getAID());
         announcement.setAttachments(attachs);
         model.addAttribute("announcement", announcement);
         return "super/messageInfo";

@@ -10,15 +10,15 @@ public interface AttachmentMapper {
 
     @Select("select * from attachment")
     List<Attachment> getAllAt();
-
-    @Select("select * from attachment where AID=#{AID}")
-    List<Attachment> getAtByAID(Integer AID);
+    // 查询某个课程教参的其他资料
+    @Select("select * from attachment where CID=#{CID}")
+    List<Attachment> getAtByCID(Integer CID);
 
     @Select("select * from attachment where ATID=#{ATID}")
     Attachment getAtByATID(Integer ATID);
 
     @Options(useGeneratedKeys = true,keyProperty = "ATID")
-    @Insert("insert into attachment values (ATPath=#{ATPath},AID=#{AID}")
+    @Insert("insert into attachment values (ATPath=#{ATPath},CID=#{CID}")
     int insertAt(Attachment attachment);
 
 }
