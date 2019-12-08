@@ -65,6 +65,7 @@ public class StudentController {
         return "Student/message";
     }
 
+
     @GetMapping("/messageInfo")
     public String toMessageInfoPage(@RequestParam(value = "AID") String AID, Model model, HttpSession session){
         Announcement announcement = announcementMapper.getAn(Integer.valueOf(AID));

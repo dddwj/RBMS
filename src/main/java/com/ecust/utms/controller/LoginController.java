@@ -49,7 +49,7 @@ public class LoginController {
                 session.setAttribute("loginuser",stu);
                 Department dept = departmentMapper.getDept(stu.getDeptID());//放到里面防止空指针
                 session.setAttribute("dept",dept);
-                return "redirect:/Student/message";
+                return "redirect:/student/home";
             }else {
                 map.put("msg","用户名或密码错误");
                 return "login";
@@ -66,7 +66,7 @@ public class LoginController {
                 session.setAttribute("loginuser",tea);
                 Department dept = departmentMapper.getDept(tea.getDeptID());//放到里面防止空指针
                 session.setAttribute("dept",dept);
-                return "redirect:/main_T.html";
+                return "redirect:/teacher/home";
             }else {
                 map.put("msg","用户名或密码错误");
                 return "login";
@@ -79,7 +79,7 @@ public class LoginController {
             }
             else if(ad.getTID().equals(username) && ad.getPasswd().equals(inputPassword)){
                 session.setAttribute("loginuser",ad);
-                return "redirect:/main_A.html";
+                return "redirect:/admin/home";
             }else {
                 map.put("msg","用户名或密码错误");
                 return "login";
