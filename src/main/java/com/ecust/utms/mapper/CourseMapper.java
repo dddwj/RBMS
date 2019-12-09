@@ -33,4 +33,11 @@ public interface CourseMapper {
             "from course a,teacher b\n" +
             "where a.TID=b.TID and a.CID=#{CID}")
     CourseWithTeacher getCWTByCID(Integer CID);
+
+    // 查询专业课程（专业名）
+    @Select("select distinct a.CID as 'CID',a.`Name` as 'CName',a.Term as 'Term',d.`Name` as 'TName'\n" +
+            "from course a,selectcourse b,student c,teacher d\n" +
+            "where a.CID = b.CID and b.SID = c.SID and a.TID = d.TID\n" +
+            "and c.Major = #{major}")
+    List<CourseWithTeacher> getCWTByMajor(String major);
 }

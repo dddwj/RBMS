@@ -3,7 +3,6 @@ package com.ecust.utms.controller.Administrator;
 import com.alibaba.fastjson.JSONObject;
 import com.ecust.utms.mapper.*;
 import com.ecust.utms.model.*;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

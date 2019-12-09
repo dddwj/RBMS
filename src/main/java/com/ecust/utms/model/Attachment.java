@@ -15,12 +15,12 @@ public class Attachment {
         this.ATPath = ATPath;
     }
 
-    public Integer getAID() {
+    public Integer getCID() {
         return CID;
     }
 
-    public void setAID(Integer AID) {
-        this.CID = AID;
+    public void setCID(Integer CID) {
+        this.CID = CID;
     }
 
     public Integer getATID() {

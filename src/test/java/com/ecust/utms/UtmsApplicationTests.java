@@ -42,16 +42,16 @@ public class UtmsApplicationTests {
 //        for(CourseWithTeacher cwt:CWT1s)
 //            System.out.println(cwt.toString());
 //e
-//        List<CourseWithTeacher> CWT2s = courseMapper.getTeacherCWT("111");
-//        for(CourseWithTeacher cwt:CWT2s)
-//            System.out.println(cwt.toString());
+        List<CourseWithTeacher> CWT2s = courseMapper.getCWTByMajor("软件工程");
+        for(CourseWithTeacher cwt:CWT2s)
+            System.out.println(cwt.toString());
 
-        Book book = bookMapper.getBookByCID(1);
-        System.out.println(book.toString());
-
-        List<Attachment> as = attachmentMapper.getAtByCID(1);
-        for(Attachment a:as)
-            System.out.println(a.toString());
+//        Book book = bookMapper.getBookByCID(1);
+//        System.out.println(book.toString());
+//
+//        List<Attachment> as = attachmentMapper.getAtByCID(1);
+//        for(Attachment a:as)
+//            System.out.println(a.toString());
     }
 
 }
