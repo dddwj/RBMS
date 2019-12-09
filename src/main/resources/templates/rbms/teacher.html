@@ -1,18 +1,70 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <!--<link rel="stylesheet" type="text/css" href="../../static/css/my1.css">-->
+    <title>参考书管理系统</title>
 </head>
-<body>
-Hi teacher!
 
-<h2>本学期的课程</h2>
-多门课 课程号、课程的名称、开课老师、学期、<a href="">编辑课程资料</a> <a href="">编辑教参</a>
+<body style="margin: 0; background:url(../../static/img/背景1.png);">
 
-<h2>开课</h2>
-输入：课程名、学期
-<button>开课</button>
+<div class="col-md-12 column text-center" style="margin-top: 20px; font-family: 华文行楷; font-size:25px;">
+    <h2>华东理工大学</h2><h1>参考书管理系统</h1>
+</div>
+
+<div class="container">
+    <h2>本学期的课程</h2>
+    <form action="/teacher/SearchMyClass">
+        <input type="submit" value="搜索我的课程！">
+    </form>
+
+    <table class="table table-striped" th:style="${courses==null}?'display:none;':'padding:0px 0px 0px 0px;'">
+        <caption style="font-size: 25px;" class="text-center"><b>课程列表</b></caption>
+
+        <thead class="theadcenter">
+        <tr>
+            <th>课程编号</th>
+            <th>课程名称</th>
+            <th>开课学期</th>
+            <th>上课老师</th>
+            <th>查看/添加</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="course:${courses}">
+            <input id="classID" type="hidden" th:value="${course.getCID()}">
+            <td th:text="${course.CID}">0001名称</td>
+            <td th:text="${course.CName}">基于机器学习的XXX</td>
+
+            <td th:text="${course.term}">蒋小花</td>
+            <td th:text="${course.TName}">1</td>
+            <td>
+                <a target="_blank" th:href=" '/attachment/AddAttachment?CID=' + ${course.CID}">课程资料</a>
+                &nbsp;&nbsp;
+                <a target="_blank" th:href=" '/book/AddBook?CID=' + ${course.CID}">教参</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <hr>
+    <h2>没有找到？开课！</h2>
+    <form action="/teacher/StartClass">
+        <label>课程名字<input type="text" name="classname"></label>
+        <label>学期<input type="text" name="term"></label>
+        <input type="submit" value="开课！">
+    </form>
+    <div th:text="${msg}" style="color: #ff8392;"></div>
+</div>
+
 
 </body>
 </html>

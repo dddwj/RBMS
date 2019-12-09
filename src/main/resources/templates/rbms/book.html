@@ -17,7 +17,7 @@
 
 <body>
 <div class="container">
-<table class="table table-striped" th:style="${book==null}?'display:none;':'padding:0px 0px 0px 0px;'">
+<table class="table table-striped" th:style="${mybook==null}?'display:none;':'padding:0px 0px 0px 0px;'">
     <caption style="font-size: 25px;" class="text-center"><b>资料列表</b></caption>
 
     <thead class="theadcenter">
@@ -28,32 +28,23 @@
         <th>作者</th>
         <th>出版日期</th>
         <th>图书链接</th>
-        <th>操作</th>
         <th></th>
     </tr>
     </thead>
     <tbody>
     <!--<tr th:each="book:${books}">-->
     <tr>
-        <input id="classID" type="hidden" th:value="${book.ISBN}">
-        <td th:text="${book.ISBN}">0001名称</td>
-        <td th:text="${book.name}">基于机器学习的XXX</td>
-        <td th:text="${book.publisher}"></td>
-        <td th:text="${book.author}"></td>
-        <td th:text="${book.publishingDate}"></td>
-        <td><a target="_blank" th:href="${book.libUrl}" th:text="${book.libUrl}"></a></td>
-        <td><a target="_blank" th:href=" '/files/download?path='">下载</a></td>
+        <input id="classID" type="hidden" th:value="${mybook.ISBN}">
+        <td th:text="${mybook.ISBN}">0001名称</td>
+        <td th:text="${mybook.name}">基于机器学习的XXX</td>
+        <td th:text="${mybook.publisher}"></td>
+        <td th:text="${mybook.author}"></td>
+        <td th:text="${mybook.publishingDate}"></td>
+        <td><a target="_blank" th:href="${mybook.libUrl}" th:text="${mybook.libUrl}"></a></td>
     </tr>
     </tbody>
 </table>
 </div>
 
-<h2>根据ISBN、书名、作者搜索</h2>
-搜索结果的表格 <a>添加本书</a>
-
-<a href="">没有结果，自行添加</a>
-
-
-<h2></h2>
 </body>
 </html>

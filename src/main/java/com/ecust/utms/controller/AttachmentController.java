@@ -33,18 +33,23 @@ public class AttachmentController {
         // 调用MAPPER
         List<Attachment> attachments = attachmentMapper.getAtByCID(CID);
 
-//        Attachment attachment1 = new Attachment();
-//        attachment1.setCID(999);
-//        attachment1.setATID(2);
-//        attachment1.setATName("软件工程导论PPT");
-//        attachment1.setATPath("userfiles/elective.xlsx");
-//
-//        LinkedList<Attachment> attachments = new LinkedList<>();
-//        attachments.add(attachment1);
-
         map.put("attachments", attachments);
 
         return "rbms/attachment";
+    }
+
+    @GetMapping("AddAttachment")
+    public String addAttachment(Map<String,Object> map, HttpSession session, HttpServletRequest request,
+                                   @RequestParam(value = "CID", required = true) Integer CID){
+        logger.trace("Adding attachment for: " + CID);
+        logger.trace("Searching attachment for: " + CID);
+
+        // 调用MAPPER
+        List<Attachment> attachments = attachmentMapper.getAtByCID(CID);
+
+        map.put("attachments", attachments);
+
+        return "rbms/addAttachment";
     }
 
 }

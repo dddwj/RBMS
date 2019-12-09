@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <!--<link rel="stylesheet" type="text/css" href="../../static/css/my1.css">-->
+    <title>参考书管理系统</title>
+</head>
+
+<body>
+<div class="container">
+    <table class="table table-striped" th:style="${attachments==null}?'display:none;':'padding:0px 0px 0px 0px;'">
+        <caption style="font-size: 25px;" class="text-center"><b>资料列表</b></caption>
+
+        <thead class="theadcenter">
+        <tr>
+            <th>资料编号</th>
+            <th>资料名称</th>
+            <th>操作</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="attachment:${attachments}">
+            <input id="classID" type="hidden" th:value="${attachment}">
+            <td th:text="${attachment.ATID}">0001名称</td>
+            <td th:text="${attachment.ATName}">基于机器学习的XXX</td>
+            <td><a target="_blank" th:href=" '/files/download?path=' + ${attachment.getATPath()}">下载</a></td>
+            <td><a target="_blank" th:href=" '#'">上传 还没做</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
