@@ -9,6 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.net.URLEncoder;
 
 @Service
 public class FileService {
@@ -30,7 +31,7 @@ public class FileService {
     }
 
 
-    public String downloadFile(String path, HttpServletResponse response){
+    public String downloadFile(String path, HttpServletResponse response) throws UnsupportedEncodingException {
         if (path != null) {
             path = FILE_FOLDER + path;
             File file = new File(path);
@@ -40,8 +41,9 @@ public class FileService {
             if (file.exists()) {
                 logger.info("=====Downloading:" + file.getAbsoluteFile());
                 response.setContentType("application/force-download");// 设置强制下载不打开
-                response.addHeader("Content-Disposition",
-                        "attachment;fileName=" +  fileName);// 设置文件名
+//                response.addHeader("Content-Disposition",
+//                        "attachment;fileName=" +  fileName);// 设置文件名
+                response.addHeader("Content-Disposition", String.format("attachment; filename=\"%s\"", URLEncoder.encode(fileName, "utf-8")));
                 byte[] buffer = new byte[1024];
                 FileInputStream fis = null;
                 BufferedInputStream bis = null;

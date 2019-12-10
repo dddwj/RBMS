@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 @Controller
@@ -36,7 +37,7 @@ public class ThesisController {
     }
 
     @GetMapping("/Files/download")
-    public String download(@RequestParam("path") String path, HttpServletResponse response){
+    public String download(@RequestParam("path") String path, HttpServletResponse response) throws UnsupportedEncodingException {
         return fileService.downloadFile(path, response);
     }
 

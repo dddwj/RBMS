@@ -52,7 +52,7 @@ public class FileController {
 
 
     @GetMapping("/download")
-    public String download(@RequestParam(value = "path") String path, HttpServletResponse response){
+    public String download(@RequestParam(value = "path") String path, HttpServletResponse response) throws UnsupportedEncodingException {
         return fileService.downloadFile(path, response);
     }
 
