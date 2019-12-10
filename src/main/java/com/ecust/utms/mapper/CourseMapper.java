@@ -1,6 +1,7 @@
 package com.ecust.utms.mapper;
 
 import com.ecust.utms.model.CourseWithTeacher;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
@@ -40,4 +41,9 @@ public interface CourseMapper {
             "where a.CID = b.CID and b.SID = c.SID and a.TID = d.TID\n" +
             "and c.Major = #{major}")
     List<CourseWithTeacher> getCWTByMajor(String major);
+
+    // 教师开课
+    @Insert("insert into course(`Name`,Term,TID)\n" +
+            "values(#{Name},#{Term},#{TID})")
+    Boolean newCourse(String Name,String Term,String TID);
 }

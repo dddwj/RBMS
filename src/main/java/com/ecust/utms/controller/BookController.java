@@ -83,7 +83,8 @@ public class BookController {
         logger.trace("Searching Book of Author == " + author);
 
         // 调用mapper
-
+        List<Book> books = bookMapper.getBookByAuthor(author);
+        map.put("books", books);
 
         map.put("CID", CID);
 
@@ -102,7 +103,7 @@ public class BookController {
         logger.trace("Searching Book of Name == " + name);
 
         // 调用mapper
-        List<Book> books = bookMapper.getBookByName(name);  // 为啥报错？？？
+        List<Book> books = bookMapper.getBookByName(name);
         map.put("books", books);
 
         map.put("CID", CID);
@@ -136,13 +137,21 @@ public class BookController {
                                 @RequestParam(value = "CID", required = true) Integer CID,
                                 @RequestParam(value = "bookID", required = true) String ISBN){
         logger.trace("Searching Book for Class: " + CID);
-        Book mybook = bookMapper.getBookByCID(CID);
-        map.put("mybook", mybook);
 
         logger.trace("adding book " + ISBN + " to Class " + CID);
 
+        // 调用mapper更新此本书的CID
+        Boolean res = bookMapper.addExistedBook(CID,ISBN);
+
         map.put("CID", CID);
-        map.put("msg_rec", "选择成功！");
+
+        if(res)
+            map.put("msg_rec", "选择成功！");
+        else
+            map.put("msg_rec", "选择失败！");
+
+        Book mybook = bookMapper.getBookByCID(CID);
+        map.put("mybook", mybook);
 
         return "rbms/addBook";
     }

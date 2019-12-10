@@ -41,17 +41,21 @@ public class UtmsApplicationTests {
 //        List<CourseWithTeacher> CWT1s = courseMapper.getStudentCWT("10161870");
 //        for(CourseWithTeacher cwt:CWT1s)
 //            System.out.println(cwt.toString());
-//e
-        List<CourseWithTeacher> CWT2s = courseMapper.getCWTByMajor("软件工程");
-        for(CourseWithTeacher cwt:CWT2s)
-            System.out.println(cwt.toString());
+////e
+//        List<CourseWithTeacher> CWT2s = courseMapper.getCWTByMajor("软件工程");
+//        for(CourseWithTeacher cwt:CWT2s)
+//            System.out.println(cwt.toString());
 
-//        Book book = bookMapper.getBookByCID(1);
-//        System.out.println(book.toString());
+        List<Book> books = bookMapper.getBookByAuthor("王全瑞");
+        for(Book b:books)
+            System.out.println(b.toString());
 //
 //        List<Attachment> as = attachmentMapper.getAtByCID(1);
 //        for(Attachment a:as)
 //            System.out.println(a.toString());
+
+//        Boolean res = courseMapper.newCourse("王者荣耀","201801","222");
+//        System.out.println(res);
     }
 
 }

@@ -1,10 +1,12 @@
 package com.ecust.utms.controller;
 
+import com.ecust.utms.mapper.CourseMapper;
 import com.ecust.utms.model.CourseWithTeacher;
 import com.ecust.utms.model.Student;
 import com.ecust.utms.model.Teacher;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -20,6 +23,8 @@ import java.util.Map;
 public class TeacherPageController {
 
     Logger logger = LoggerFactory.getLogger(getClass());
+    @Autowired
+    CourseMapper courseMapper;
 
     @GetMapping("/home")
     public String showStudentPage(Map<String, Object> map, HttpSession session, HttpServletRequest request) {
@@ -31,13 +36,8 @@ public class TeacherPageController {
         Teacher user = (Teacher) session.getAttribute("loginuser");
         logger.trace("Teacher ID: " + user.getTID());
 
-        CourseWithTeacher c1 = new CourseWithTeacher();
-        c1.setTName("我本人");
-        c1.setTerm("19年学期");
-        c1.setCID(1);
-        c1.setCName("1号课");
-        LinkedList<CourseWithTeacher> courses = new LinkedList<>();
-        courses.add(c1);
+        // 调用mapper
+        List<CourseWithTeacher> courses = courseMapper.getTeacherCWT(user.getTID());
 
         map.put("courses", courses);
 
@@ -52,9 +52,16 @@ public class TeacherPageController {
         logger.trace("Teacher ID: " + user.getTID());
         logger.trace("classname, term: " + classname + ", " + term);
 
+        // 调用mapper添加课程
+        Boolean res = courseMapper.newCourse(classname,term,user.getTID());
+        if(res)
+            map.put("msg", "成功, 已刷新！");
+        else
+            map.put("msg", "失败，请重试！");
 
-
-        map.put("msg", "成功, 请刷新！");
+        // 调用mapper重新刷新
+        List<CourseWithTeacher> courses = courseMapper.getTeacherCWT(user.getTID());
+        map.put("courses", courses);
 
         return "rbms/teacher";
 
