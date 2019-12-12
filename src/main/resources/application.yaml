@@ -37,7 +37,7 @@ spring:
 file:
   upload-folder: D:/projects/IdeaProjects/RBMS/src/main/resources/userfiles/
 #  upload-folder: /Users/dddwj/IdeaProjects/RBMS/src/main/resources/static/userfiles/
-#  upload-folder: /root/utms/static/  # Linux服务器上路径
+#  upload-folder: /root/rbms/static/userfiles  # Linux服务器上路径
 
 mybatis:
   configuration:
