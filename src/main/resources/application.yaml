@@ -35,8 +35,8 @@ spring:
     useGlobalDataSourceStat: true
     connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
 file:
-#  upload-folder: D:/projects/IdeaProjects/RBMS/src/main/resources/userfiles/
-  upload-folder: /Users/dddwj/IdeaProjects/RBMS/src/main/resources/static/userfiles/
+  upload-folder: D:/projects/IdeaProjects/RBMS/src/main/resources/userfiles/
+#  upload-folder: /Users/dddwj/IdeaProjects/RBMS/src/main/resources/static/userfiles/
 #  upload-folder: /root/utms/static/  # Linux服务器上路径
 
 mybatis:

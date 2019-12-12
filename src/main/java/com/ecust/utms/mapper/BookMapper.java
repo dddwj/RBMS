@@ -27,7 +27,7 @@ public interface BookMapper {
 
     // 在数据库里搜索某个教参（模糊匹配书名）
     @Select("select * from book\n" +
-            "where `Name` like '%${value}%'")
+            "where lower(`Name`) like '%${value}%'")
     List<Book> getBookByName(String name);
 
     // 在数据库里搜索某个教参（模糊匹配作者）
@@ -42,7 +42,7 @@ public interface BookMapper {
     Boolean addExistedBook(@Param("CID") Integer CID, @Param("ISBN") String ISBN);
 
     // 为某个课程添加数据库里没有的教参
-    @Insert("insert into book(ISBN,`Name`,Publisher,Author,PublishingDate)\n" +
-            "values(#{ISBN},#{Name},#{Publisher}',#{Author},#{PublishingDate})")
+    @Insert("insert into book(ISBN,`Name`,Publisher,Author,PublishingDate,CID)\n" +
+            "values(#{ISBN},#{Name},#{Publisher},#{Author},#{PublishingDate},#{CID})")
     Boolean addNotExistedbook(Book book);
 }

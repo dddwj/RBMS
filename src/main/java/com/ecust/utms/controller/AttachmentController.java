@@ -34,18 +34,18 @@ public class AttachmentController {
     @Autowired
     AttachmentMapper attachmentMapper;
 
-//    @GetMapping("SearchAttachment")
-//    public String searchAttachment(Map<String,Object> map, HttpSession session, HttpServletRequest request,
-//                             @RequestParam(value = "CID", required = true) Integer CID){
-//        logger.trace("Searching attachment for: " + CID);
-//
-//        // 调用MAPPER
-//        List<Attachment> attachments = attachmentMapper.getAtByCID(CID);
-//
-//        map.put("attachments", attachments);
-//
-//        return "rbms/attachment";
-//    }
+    @GetMapping("SearchAttachment")
+    public String searchAttachment(Map<String,Object> map, HttpSession session, HttpServletRequest request,
+                             @RequestParam(value = "CID", required = true) Integer CID){
+        logger.trace("Searching attachment for: " + CID);
+
+        // 调用MAPPER
+        List<Attachment> attachments = attachmentMapper.getAtByCID(CID);
+
+        map.put("attachments", attachments);
+
+        return "rbms/attachment";
+    }
 
     @GetMapping("AddAttachment")
     public String addAttachment(Map<String,Object> map, HttpSession session, HttpServletRequest request,

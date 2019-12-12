@@ -22,7 +22,7 @@
 <hr>
 
 <div class="container">
-<table class="table table-striped" th:style="${mybook==null}?'display:none;':'padding:0px 0px 0px 0px;'">
+<table class="table table-striped" th:style="${mybooks==null}?'display:none;':'padding:0px 0px 0px 0px;'">
     <caption style="font-size: 25px;" class="text-center"><b>资料列表</b></caption>
 
     <thead class="theadcenter">
@@ -37,8 +37,8 @@
     </tr>
     </thead>
     <tbody>
-    <!--<tr th:each="book:${books}">-->
-    <tr>
+    <tr th:each="mybook:${mybooks}">
+<!--    <tr>-->
         <input id="classID" type="hidden" th:value="${mybook.ISBN}">
         <td th:text="${mybook.ISBN}">0001名称</td>
         <td th:text="${mybook.name}">基于机器学习的XXX</td>

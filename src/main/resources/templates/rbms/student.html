@@ -22,7 +22,7 @@
 </div>
 <hr>
 <div class="container text-center">
-    <h2><i class="fa fa-user fa-lg"></i>&nbsp;&nbsp;欢迎你，信息学院 - 苏永煜，软件162班</h2>
+    <h2 th:text="'欢迎你, '+${session.loginuser.Name}+'-'+${session.dept.Name}+'学院-'+${session.loginuser.Major}"><i class="fa fa-user fa-lg"></i>&nbsp;&nbsp;欢迎你，信息学院 - 苏永煜，软件162班</h2>
 </div>
 <hr>
 

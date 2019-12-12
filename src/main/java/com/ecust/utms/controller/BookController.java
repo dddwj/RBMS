@@ -113,21 +113,31 @@ public class BookController {
 
     @GetMapping("recommendBook")
     public String recommendBook(Map<String,Object> map, HttpSession session, HttpServletRequest request,
+                                @RequestParam(value = "ISBN", required = true) String isbn,
                                 @RequestParam(value = "Name", required = true) String name,
                                 @RequestParam(value = "Publisher", required = true) String publisher,
                                 @RequestParam(value = "Author", required = true) String author,
                                 @RequestParam(value = "PublishingDate", required = true) String publishingDate,
                                 @RequestParam(value = "CID", required = true) Integer CID){
         logger.trace("Searching Book for Class: " + CID);
-        List<Book> mybooks = bookMapper.getBooksByCID(CID);
-        map.put("mybooks", mybooks);
 
 
-        logger.trace("Recommending Book: " + name,  publisher, author, publishingDate);
 
+        logger.trace("Recommending Book: " + isbn, name, publisher, author, publishingDate);
+
+        Book book = new Book();
+        book.setISBN(isbn);
+        book.setName(name);
+        book.setPublisher(publisher);
+        book.setAuthor(author);
+        book.setPublishingDate(publishingDate);
+        book.setCID(CID);
+        bookMapper.addNotExistedbook(book);
 
         map.put("CID", CID);
         map.put("msg_rec", "推荐成功！");
+        List<Book> mybooks = bookMapper.getBooksByCID(CID);
+        map.put("mybooks", mybooks);
 
         return "rbms/addBook";
     }
