@@ -14,7 +14,12 @@
     <title>参考书管理系统</title>
 </head>
 
-<body>
+<body style="margin: 0; background:url(../../static/img/背景1.png);">
+<div class="col-md-12 column text-center" style="margin-top: 20px;">
+    <h2>华东理工大学</h2><h1><i class="fa fa-book"></i>参考书管理系统</h1>
+</div>
+<hr>
+
 <div class="container">
     <table class="table table-striped" th:style="${attachments==null}?'display:none;':'padding:0px 0px 0px 0px;'">
         <caption style="font-size: 25px;" class="text-center"><b>资料列表</b></caption>
@@ -33,10 +38,14 @@
             <td th:text="${attachment.ATID}">0001名称</td>
             <td th:text="${attachment.ATName}">基于机器学习的XXX</td>
             <td><a target="_blank" th:href=" '/files/download?path=' + ${attachment.getATPath()}">下载</a></td>
-            <td><a target="_blank" th:href=" '#'">上传 还没做</a></td>
         </tr>
         </tbody>
     </table>
+    <div class="text-center">
+        <form action="/files/upload">
+            <button class="btn btn-info">上传</button>
+        </form>
+    </div>
 </div>
 
 </body>

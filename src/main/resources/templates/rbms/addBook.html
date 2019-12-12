@@ -15,9 +15,16 @@
 </head>
 
 
-<body>
+<body style="margin: 0; background:url(../../static/img/背景1.png);">
+<div class="col-md-12 column text-center" style="margin-top: 20px;">
+    <h2>华东理工大学</h2>
+    <h1><i class="fa fa-book"></i>参考书管理系统</h1>
+</div>
+<hr>
+
 <div class="container">
-    <table class="table table-striped" th:if="${mybook!=null}" th:style="${mybook==null}?'display:none;':'padding:0px 0px 0px 0px;'">
+    <table class="table table-striped" th:if="${mybook!=null}"
+           th:style="${mybook==null}?'display:none;':'padding:0px 0px 0px 0px;'">
         <caption style="font-size: 25px;" class="text-center"><b>现有教参列表</b></caption>
 
         <thead class="theadcenter">
@@ -47,73 +54,85 @@
 </div>
 
 <div class="container">
-<hr>
-<h2>1.添加教参(从图书馆里搜索)</h2>
-<!--<div th:text="你正在为 号课程添加教参"></div>-->
-<hr>
+    <hr>
+    <h2><i class="fa fa-bookmark-o" aria-hidden="true"></i>&nbsp;添加教参(从图书馆里搜索)</h2>
+    <!--<div th:text="你正在为 号课程添加教参"></div>-->
+    <hr>
 
-<h3>根据ISBN搜索</h3>
-<form action="/book/findByISBN">
-    <input type="text" name="CID" th:value="${CID}" hidden>
-    <input type="text" name="ISBN">
-    <input type="submit" value="搜索!">
-</form>
-
-
-<h3>根据作者搜索 还没写sql</h3>
-<form action="/book/findByAuthor">
-    <input type="text" name="CID" th:value="${CID}" hidden>
-    <input type="text" name="author">
-    <input type="submit" value="搜索!">
-</form>
+    <h3>根据ISBN搜索</h3>
+    <div class="form-inline">
+        <form action="/book/findByISBN">
+            <input class="form-control hidden" type="text" name="CID" th:value="${CID}" hidden>
+            <input class="form-control" type="text" name="ISBN">
+            <input class="btn btn-primary" type="submit" value="搜索!">
+        </form>
+    </div>
 
 
-<h3>根据书名搜索</h3>
-<form action="/book/findByName">
-    <input type="text" name="CID" th:value="${CID}" hidden>
-    <input type="text" name="name">
-    <input type="submit" value="搜索!">
-</form>
+    <h3>根据作者搜索</h3>
+    <div class="form-inline">
+        <form action="/book/findByAuthor">
+            <input class="form-control hidden" type="text" name="CID" th:value="${CID}" hidden>
+            <input class="form-control" type="text" name="author">
+            <input class="btn btn-primary" type="submit" value="搜索!">
+        </form>
+    </div>
 
-<table class="table table-striped" th:style="${books==null}?'display:none;':'padding:0px 0px 0px 0px;'">
-    <caption style="font-size: 25px;" class="text-center"><b>结果列表</b></caption>
 
-    <thead class="theadcenter">
-    <tr>
-        <th>ISBN</th>
-        <th>图书名称</th>
-        <th>出版社</th>
-        <th>作者</th>
-        <th>URL</th>
-        <th>操作</th>
-        <th></th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="book:${books}">
-        <input id="bookID" type="hidden" th:value="${book.ISBN}">
-        <td th:text="${book.ISBN}">0001名称</td>
-        <td th:text="${book.name}">基于机器学习的XXX</td>
-        <td th:text="${book.publisher}">蒋小花</td>
-        <td th:text="${book.author}">1</td>
-        <td th:text="${book.libUrl}">1</td>
-        <td><a target="_blank" th:href=" '/book/AddThisBook?CID=' + ${CID} +'&bookID=' + ${book.ISBN}">就选这本</a></td>
-    </tr>
-    </tbody>
-</table>
+    <h3>根据书名搜索</h3>
+    <div class="form-inline">
+        <form action="/book/findByName">
+            <input class="form-control hidden" type="text" name="CID" th:value="${CID}" hidden>
+            <input class="form-control" type="text" name="name">
+            <input class="btn btn-primary" type="submit" value="搜索!">
+        </form>
+    </div>
 
-<hr>
-<h2>2.荐购上传</h2>
-<form action="/book/recommendBook">
-    <input type="text" name="CID" th:value="${CID}" hidden>
-    <label>书名<input type="text" name="Name"></label>
-    <label>出版社<input type="text" name="Publisher"></label>
-    <label>作者<input type="text" name="Author"></label>
-    <label>出版时间<input type="text" name="PublishingDate"></label>
-    <input type="submit" value="推荐购买!">
-</form>
-<div th:text="${msg_rec}" style="color: red"></div>
+    <table class="table table-striped" th:style="${books==null}?'display:none;':'padding:0px 0px 0px 0px;'">
+        <caption style="font-size: 25px;" class="text-center"><b>结果列表</b></caption>
+
+        <thead class="theadcenter">
+        <tr>
+            <th>ISBN</th>
+            <th>图书名称</th>
+            <th>出版社</th>
+            <th>作者</th>
+            <th>URL</th>
+            <th>操作</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="book:${books}">
+            <input id="bookID" type="hidden" th:value="${book.ISBN}">
+            <td th:text="${book.ISBN}">0001名称</td>
+            <td th:text="${book.name}">基于机器学习的XXX</td>
+            <td th:text="${book.publisher}">蒋小花</td>
+            <td th:text="${book.author}">1</td>
+            <td th:text="${book.libUrl}">1</td>
+            <td><a target="_blank" th:href=" '/book/AddThisBook?CID=' + ${CID} +'&bookID=' + ${book.ISBN}">就选这本</a></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <hr>
+
+    <h2><i class="fa fa-bookmark-o" aria-hidden="true"></i>&nbsp;荐购上传</h2>
+    <div class="form-horizontal">
+        <form action="/book/recommendBook">
+            <input type="text" name="CID" th:value="${CID}" hidden>
+            <label>ISBN<input class="form-control" type="text" name="ISBN"></label>
+            <label>书名<input class="form-control" type="text" name="Name"></label>
+            <label>出版社<input class="form-control" type="text" name="Publisher"></label>
+            <label>作者<input class="form-control" type="text" name="Author"></label>
+            <label>出版时间<input class="form-control" type="text" name="PublishingDate"></label>
+            <input class="btn btn-primary" type="submit" value="推荐购买!">
+        </form>
+        <div th:text="${msg_rec}" style="color: red"></div>
+    </div>
 </div>
+<br><br>
+<footer><div class="container mt-2 text-center"></div></footer>
 
 </body>
 </html>

@@ -16,14 +16,19 @@
 
 <body style="margin: 0; background:url(../../static/img/背景1.png);">
 
-<div class="col-md-12 column text-center" style="margin-top: 20px; font-family: 华文行楷; font-size:25px;">
-    <h2>华东理工大学</h2><h1>参考书管理系统</h1>
+<div class="col-md-12 column text-center" style="margin-top: 20px;">
+    <h2>华东理工大学</h2><h1><i class="fa fa-book"></i>参考书管理系统</h1>
 </div>
+<hr>
+<div class="container text-center">
+    <h2><i class="fa fa-user fa-lg"></i>&nbsp;&nbsp;欢迎你，信息学院 - 过弋&nbsp;老师</h2>
+</div>
+<hr>
 
 <div class="container">
-    <h2>本学期的课程</h2>
+    <h2><i class="fa fa-graduation-cap"></i>&nbsp;本学期的课程</h2>
     <form action="/teacher/SearchMyClass">
-        <input type="submit" value="搜索我的课程！">
+        <input class="btn btn-primary" type="submit" value="搜索我的课程！">
     </form>
 
     <table class="table table-striped" th:style="${courses==null}?'display:none;':'padding:0px 0px 0px 0px;'">
@@ -35,6 +40,7 @@
             <th>课程名称</th>
             <th>开课学期</th>
             <th>上课老师</th>
+            <!--<th>课程描述</th>-->
             <th>查看/添加</th>
         </tr>
         </thead>
@@ -43,8 +49,8 @@
             <input id="classID" type="hidden" th:value="${course.getCID()}">
             <td th:text="${course.CID}">0001名称</td>
             <td th:text="${course.CName}">基于机器学习的XXX</td>
-
             <td th:text="${course.term}">蒋小花</td>
+            <!--<td th:text="course."></td>-->
             <td th:text="${course.TName}">1</td>
             <td>
                 <a target="_blank" th:href=" '/attachment/AddAttachment?CID=' + ${course.CID}">课程资料</a>
@@ -56,12 +62,15 @@
     </table>
 
     <hr>
-    <h2>没有找到？开课！</h2>
-    <form action="/teacher/StartClass">
-        <label>课程名字<input type="text" name="classname"></label>
-        <label>学期<input type="text" name="term"></label>
-        <input type="submit" value="开课！">
-    </form>
+    <h2><i class="fa fa-plus-circle"></i>&nbsp;没有找到？开课</h2>
+    <div class="form-inline">
+        <form action="/teacher/StartClass">
+            <label>课程名字<input class="form-control" type="text" name="classname"></label>
+            <label>学期<input class="form-control" type="text" name="term"></label>
+            <label>课程描述<textarea class="form-control" type="text" name="desc">...</textarea></label>
+            <input class="btn btn-success" type="submit" value="开课！">
+        </form>
+    </div>
     <div th:text="${msg}" style="color: #ff8392;"></div>
 </div>
 

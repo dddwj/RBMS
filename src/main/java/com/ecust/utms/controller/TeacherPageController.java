@@ -47,7 +47,8 @@ public class TeacherPageController {
     @GetMapping("StartClass")
     public String startClass(Map<String, Object> map, HttpSession session, HttpServletRequest request,
                              @RequestParam(value = "classname", required = false) String classname,
-                             @RequestParam(value = "term", required = false) String term) {
+                             @RequestParam(value = "term", required = false) String term,
+                             @RequestParam(value = "desc", required = false) String desc) {
         Teacher user = (Teacher) session.getAttribute("loginuser");
         logger.trace("Teacher ID: " + user.getTID());
         logger.trace("classname, term: " + classname + ", " + term);

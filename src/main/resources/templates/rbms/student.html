@@ -16,28 +16,39 @@
 
 <body style="margin: 0; background:url(../../static/img/背景1.png);">
 
-<div class="col-md-12 column text-center" style="margin-top: 20px; font-family: 华文行楷; font-size:25px;">
-    <h2>华东理工大学</h2><h1>参考书管理系统</h1>
+
+<div class="container col-md-12 column text-center" style="margin-top: 20px;">
+    <h2>华东理工大学</h2><h1><i class="fa fa-book"></i>&nbsp;参考书管理系统</h1>
 </div>
+<hr>
+<div class="container text-center">
+    <h2><i class="fa fa-user fa-lg"></i>&nbsp;&nbsp;欢迎你，信息学院 - 苏永煜，软件162班</h2>
+</div>
+<hr>
 
 <div class="container">
-    <h2>根据专业名搜索</h2>
-    <form action="/student/SearchByMajor">
-        <input type="text" name="major">
-        <input type="submit" value="搜索！">
-    </form>
+    <h2><i class="fa fa-search-plus"></i>&nbsp;根据*专业名*搜索</h2>
+    <div class="form-inline">
+        <form action="/student/SearchByMajor">
+            <input class="form-control" type="text" name="major">
+            <input class="btn btn-primary" type="submit" value="搜索！">
+        </form>
+    </div>
+
+    <h2><i class="fa fa-search-plus"></i>&nbsp;根据*课程名*搜索</h2>
+    <div class="form-inline">
+        <form action="/student/SearchByClassname">
+            <input class="form-control" type="text" name="classname">
+            <input class="btn btn-primary" type="submit" value="搜索！">
+        </form>
+    </div>
+</div>
 
 
-    <h2>根据课程名搜索</h2>
-    <form action="/student/SearchByClassname">
-        <input type="text" name="classname">
-        <input type="submit" value="搜索！">
-    </form>
-
-
-    <h2>本学期的课程</h2>
+<div class="container col-12">
+    <h2><i class="fa fa-graduation-cap"></i>&nbsp;本学期的课程</h2>
     <form action="/student/SearchMyClass">
-        <input type="submit" value="搜索我的课程！">
+        <input type="submit" class="btn btn-primary" value="搜索我的课程！">
     </form>
 
     <table class="table table-striped" th:style="${courses==null}?'display:none;':'padding:0px 0px 0px 0px;'">
