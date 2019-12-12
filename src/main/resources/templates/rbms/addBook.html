@@ -23,8 +23,8 @@
 <hr>
 
 <div class="container">
-    <table class="table table-striped" th:if="${mybook!=null}"
-           th:style="${mybook==null}?'display:none;':'padding:0px 0px 0px 0px;'">
+    <table class="table table-striped" th:if="${mybooks!=null}"
+           th:style="${mybooks==null}?'display:none;':'padding:0px 0px 0px 0px;'">
         <caption style="font-size: 25px;" class="text-center"><b>现有教参列表</b></caption>
 
         <thead class="theadcenter">
@@ -39,9 +39,8 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="book:${books}">
-        <tr>
-            <input id="classID" type="hidden" th:value="${mybook.ISBN}">
+        <tr th:each="mybook:${mybooks}">
+            <input id="classID" type="hidden" th:value="${mybooks}">
             <td th:text="${mybook.ISBN}">0001名称</td>
             <td th:text="${mybook.name}">基于机器学习的XXX</td>
             <td th:text="${mybook.publisher}"></td>
@@ -117,7 +116,7 @@
 
     <hr>
 
-    <h2><i class="fa fa-bookmark-o" aria-hidden="true"></i>&nbsp;荐购上传</h2>
+    <h2><i class="fa fa-bookmark-o" aria-hidden="true"></i>&nbsp;荐购图书</h2>
     <div class="form-horizontal">
         <form action="/book/recommendBook">
             <input type="text" name="CID" th:value="${CID}" hidden>

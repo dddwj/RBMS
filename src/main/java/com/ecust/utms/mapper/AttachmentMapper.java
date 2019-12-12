@@ -17,8 +17,8 @@ public interface AttachmentMapper {
     @Select("select * from attachment where ATID=#{ATID}")
     Attachment getAtByATID(Integer ATID);
 
-    @Options(useGeneratedKeys = true,keyProperty = "ATID")
-    @Insert("insert into attachment values (ATPath=#{ATPath},CID=#{CID}")
-    int insertAt(Attachment attachment);
+//    @Options(useGeneratedKeys = true,keyProperty = "ATID")
+    @Insert("insert into attachment(ATName, ATPath, CID) values (#{ATName}, #{ATPath}, #{CID})")
+    int insertAt(@Param("ATName") String ATName, @Param("ATPath") String ATPath, @Param("CID") Integer CID);
 
 }

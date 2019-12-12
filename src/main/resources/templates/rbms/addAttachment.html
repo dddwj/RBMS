@@ -41,11 +41,17 @@
         </tr>
         </tbody>
     </table>
-    <div class="text-center">
-        <form action="/files/upload">
-            <button class="btn btn-info">上传</button>
-        </form>
+    <div class="container text-center">
+        <h3><i class="fa fa-upload"></i>&nbsp;资料上传</h3>
+        <div class="form-inline">
+            <form method="post" action="/attachment/upload" enctype="multipart/form-data">
+                <input class="form-control hidden" type="text" name="CID" th:value="${CID}" hidden>
+                <input class="form-control" id="input-file" type="file" name="file" /><br/><br/>
+                <button id="on-btn" class="btn btn-primary" data-loading-text="Loading..." type="submit">上传</button>
+            </form>
+        </div>
     </div>
+
 </div>
 
 </body>

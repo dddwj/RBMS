@@ -3,6 +3,7 @@ package com.ecust.utms.mapper;
 import com.ecust.utms.model.CourseWithTeacher;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
@@ -45,5 +46,5 @@ public interface CourseMapper {
     // 教师开课
     @Insert("insert into course(`Name`,Term,TID)\n" +
             "values(#{Name},#{Term},#{TID})")
-    Boolean newCourse(String Name,String Term,String TID);
+    Boolean newCourse(@Param("Name") String Name, @Param("Term") String Term, @Param("TID") String TID);
 }

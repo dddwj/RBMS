@@ -1,10 +1,7 @@
 package com.ecust.utms.mapper;
 
 import com.ecust.utms.model.Book;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -16,6 +13,12 @@ public interface BookMapper {
             "from book a,course b\n" +
             "where a.CID=b.CID and a.CID=#{CID}")
     Book getBookByCID(Integer CID);
+
+    // 查询某个课程的教参(根据课程代码)
+    @Select("select a.*\n" +
+            "from book a,course b\n" +
+            "where a.CID=b.CID and a.CID=#{CID}")
+    List<Book> getBooksByCID(Integer CID);
 
     // 在数据库里搜索某个教参（ISBN）
     @Select("select * from book\n" +
@@ -36,7 +39,7 @@ public interface BookMapper {
     @Update("update book\n" +
             "set CID = #{CID}\n" +
             "WHERE ISBN = #{ISBN}")
-    Boolean addExistedBook(Integer CID, String ISBN);
+    Boolean addExistedBook(@Param("CID") Integer CID, @Param("ISBN") String ISBN);
 
     // 为某个课程添加数据库里没有的教参
     @Insert("insert into book(ISBN,`Name`,Publisher,Author,PublishingDate)\n" +

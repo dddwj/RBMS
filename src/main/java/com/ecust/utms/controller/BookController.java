@@ -29,8 +29,8 @@ public class BookController {
     public String searchBook(Map<String,Object> map, HttpSession session, HttpServletRequest request,
                              @RequestParam(value = "CID", required = true) Integer CID){
         logger.trace("Searching Book for Class: " + CID);
-        Book mybook = bookMapper.getBookByCID(CID);
-        map.put("mybook", mybook);
+        List<Book> mybooks = bookMapper.getBooksByCID(CID);
+        map.put("mybooks", mybooks);
 
         map.put("CID", CID);
 
@@ -41,8 +41,8 @@ public class BookController {
     public String addBook(Map<String,Object> map, HttpSession session, HttpServletRequest request,
                              @RequestParam(value = "CID", required = true) Integer CID){
         logger.trace("Searching Book for Class: " + CID);
-        Book mybook = bookMapper.getBookByCID(CID);
-        map.put("mybook", mybook);
+        List<Book> mybooks = bookMapper.getBooksByCID(CID);
+        map.put("mybooks", mybooks);
 
         map.put("CID", CID);
 
@@ -54,8 +54,8 @@ public class BookController {
                           @RequestParam(value = "ISBN", required = true) String ISBN,
                           @RequestParam(value = "CID", required = true) Integer CID){
         logger.trace("Searching Book for Class: " + CID);
-        Book mybook = bookMapper.getBookByCID(CID);
-        map.put("mybook", mybook);
+        List<Book> mybooks = bookMapper.getBooksByCID(CID);
+        map.put("mybooks", mybooks);
 
 
         logger.trace("Searching Book of ISBN == " + ISBN);
@@ -76,8 +76,8 @@ public class BookController {
                              @RequestParam(value = "author", required = true) String author,
                              @RequestParam(value = "CID", required = true) Integer CID){
         logger.trace("Searching Book for Class: " + CID);
-        Book mybook = bookMapper.getBookByCID(CID);
-        map.put("mybook", mybook);
+        List<Book> mybooks = bookMapper.getBooksByCID(CID);
+        map.put("mybooks", mybooks);
 
 
         logger.trace("Searching Book of Author == " + author);
@@ -96,8 +96,8 @@ public class BookController {
                                @RequestParam(value = "name", required = true) String name,
                                 @RequestParam(value = "CID", required = true) Integer CID){
         logger.trace("Searching Book for Class: " + CID);
-        Book mybook = bookMapper.getBookByCID(CID);
-        map.put("mybook", mybook);
+        List<Book> mybooks = bookMapper.getBooksByCID(CID);
+        map.put("mybooks", mybooks);
 
 
         logger.trace("Searching Book of Name == " + name);
@@ -119,8 +119,8 @@ public class BookController {
                                 @RequestParam(value = "PublishingDate", required = true) String publishingDate,
                                 @RequestParam(value = "CID", required = true) Integer CID){
         logger.trace("Searching Book for Class: " + CID);
-        Book mybook = bookMapper.getBookByCID(CID);
-        map.put("mybook", mybook);
+        List<Book> mybooks = bookMapper.getBooksByCID(CID);
+        map.put("mybooks", mybooks);
 
 
         logger.trace("Recommending Book: " + name,  publisher, author, publishingDate);
@@ -150,8 +150,8 @@ public class BookController {
         else
             map.put("msg_rec", "选择失败！");
 
-        Book mybook = bookMapper.getBookByCID(CID);
-        map.put("mybook", mybook);
+        List<Book> mybooks = bookMapper.getBooksByCID(CID);
+        map.put("mybooks", mybooks);
 
         return "rbms/addBook";
     }
